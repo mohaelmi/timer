@@ -1,12 +1,11 @@
 
-function alarm() {
-  let arguments = process.argv.slice(2);
-  if (arguments.length < 1) {
+function alarm(delays) {
+  if (delays.length < 1) {
     console.log('no alarm number recieved');
     return;
   }
-
-  for (let num of arguments) {
+  
+  for (let num of delays) {
     const delay = Number(num + '000');
     if (!delay) {
       continue;
@@ -14,10 +13,11 @@ function alarm() {
     setTimeout(() => {
       process.stdout.write('\x07');
     }, delay);
-
+    
   }
-
+  
 }
 
+let arguments = process.argv.slice(2);
 
-alarm();
+alarm(arguments);
